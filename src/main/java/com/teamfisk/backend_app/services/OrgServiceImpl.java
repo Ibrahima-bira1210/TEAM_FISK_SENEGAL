@@ -2,6 +2,8 @@ package com.teamfisk.backend_app.services;
 
 import com.teamfisk.backend_app.entities.Organization;
 import com.teamfisk.backend_app.repositories.OrgRepository;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -22,7 +24,7 @@ public class OrgServiceImpl implements OrgService {
     }
 
     @Override
-    public Iterable<Organization> getAllOrganizations() {
+    public Iterable<Organization> getAllOrganizations(Pageable pageable) {
         return orgRepository.findAll();
     }
 
@@ -30,4 +32,6 @@ public class OrgServiceImpl implements OrgService {
     public Optional<Organization> getOrganisation(String id) {
         return orgRepository.findById(id);
     }
+
+
 }
