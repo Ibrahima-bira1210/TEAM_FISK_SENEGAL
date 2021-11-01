@@ -24,6 +24,7 @@ public class Organization {
     private long tel;
     private String boitePostal;
     private String secteur;
+    private String region;
     private double longitude;
     private double latitude;
     @Lob

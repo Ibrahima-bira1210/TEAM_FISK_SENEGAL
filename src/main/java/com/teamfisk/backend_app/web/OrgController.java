@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin("*")
@@ -76,6 +77,12 @@ public class OrgController {
         }
         orgRepository.delete(optionalOrganization.get());
         return ResponseEntity.status(HttpStatus.OK).body(optionalOrganization.get());
+    }
+
+    //********************** Filter Organizatons ********************************************
+    @GetMapping("/filter")
+    public List<Organization> filter(@RequestParam String name,@RequestParam String secteur,@RequestParam String region){
+        return orgService.filter(name,secteur,region);
     }
 
 
