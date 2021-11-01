@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-block">
+        <h4 class="card-title">Localisation</h4>
+        <google-map [options]="mapOptions" width="100%">
+          <map-marker *ngFor="let spot of spots"
+                      [position]="{ lat: spot.lat, lng: spot.lng }"
+                      [options]="markerOptions"></map-marker>
+        </google-map>
+      </div>
+    </div>
+  </div>
+</div>
