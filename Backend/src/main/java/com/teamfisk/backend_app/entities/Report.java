@@ -25,6 +25,7 @@ public class Report {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid",strategy = "uuid2")
     private String id;
+    @Lob
     private String moreInfo;
     private String corruptionType;
 

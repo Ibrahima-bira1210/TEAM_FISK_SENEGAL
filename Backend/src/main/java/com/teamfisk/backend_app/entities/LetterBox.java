@@ -18,6 +18,7 @@ public class LetterBox {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid",strategy = "uuid2")
     private String id;
+    @Lob
     private String message;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

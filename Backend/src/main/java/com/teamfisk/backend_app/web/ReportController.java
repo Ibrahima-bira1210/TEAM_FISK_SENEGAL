@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Optional;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/reports")
 public class ReportController {
@@ -33,6 +34,18 @@ public class ReportController {
     }
 
     //************************ Save a Report ****************************************
+    @PostMapping("/fileless/{orgId}")
+    public ResponseEntity<Report> create(@PathVariable String orgId, @RequestBody Report report){
+        Optional<Organization> organization = orgService.getOrganisation(orgId);
+        if(!organization.isPresent()){
+            return ResponseEntity.unprocessableEntity().build();
+        }
+        report.setOrganization(organization.get());
+        Report savedReport = reportRepository.save(report);
+        return ResponseEntity.status(HttpStatus.OK).body(savedReport);
+    }
+
+
 
     @PostMapping("/{orgId}")
     public ResponseEntity<Report> create(@PathVariable(value = "orgId") String orgId, @RequestParam("file") MultipartFile file,
@@ -42,6 +55,7 @@ public class ReportController {
             return ResponseEntity.unprocessableEntity().build();
         }
         report.setOrganization(organization.get());
+        organization.get().setRate(organization.get().getRate()-0.5);
         Report savedReport = reportRepository.save(report);
         String message="";
         try {
