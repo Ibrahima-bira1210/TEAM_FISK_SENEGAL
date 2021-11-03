@@ -2,19 +2,17 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+
 export const environment = {
   production: false,
   keycloak: {
-    // Url of the Identity Provider
-    issuer: 'http://localhost:8080/auth/',
+    url: 'http://localhost:8080/auth',
+    realm: 'XehGeer',
+    clientId: 'XehGeer',
+  },
+  BASE_URL: "http://192.168.43.202:8080/api/"
 
-    // Realm
-    realm: 'BulSetan',
 
-    // The SPA's id.
-    // The SPA is registerd with this id at the auth-serverß
-    clientId: 'BulSetanWeb',
-  }
 };
 
 /*

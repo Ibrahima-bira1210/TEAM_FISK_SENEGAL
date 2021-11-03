@@ -31,8 +31,8 @@
         <div class="card">
           <div class="card-block">
             <div class="m-t-30" style="text-align: center;">
-              <img src="assets/images/qrcode.png" alt="d" class="shadow" width="" />
-              <h6 class="card-title mt-3"><b>GAINDE 2000</b></h6>
+              <img [src]="'data:image/jpeg;base64,' +organisation.qrCode" alt="d" class="shadow" width="" />
+              <h6 class="card-title mt-3"><b>{{organisation.name}}</b></h6>
             </div>
           </div>
         </div>
@@ -46,37 +46,32 @@
               <div class="form-group">
                 <label class="col-md-12">Nom</label>
                 <div class="col-md-12">
-                  <input type="text" placeholder="GAINDE 2000" disabled class="form-control form-control-line">
+                  <input type="text" placeholder="{{organisation.name}}" disabled class="form-control form-control-line">
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-md-12">Nom</label>
+                <label class="col-md-12">Email</label>
                 <div class="col-md-12">
-                  <input type="text" placeholder="GAINDE 2000" disabled class="form-control form-control-line">
+                  <input type="text" placeholder="{{organisation.email}}" disabled class="form-control form-control-line">
                 </div>
               </div>
 
               <div class="form-group">
-                <label class="col-md-12">Nom</label>
+                <label class="col-md-12">Boite Postal</label>
                 <div class="col-md-12">
-                  <input type="text" placeholder="GAINDE 2000" disabled class="form-control form-control-line">
+                  <input type="text" placeholder="{{organisation.boitePostal}}" disabled class="form-control form-control-line">
                 </div>
               </div>
 
               <div class="form-group">
-                <label class="col-md-12">Nom</label>
+                <label class="col-md-12">Secteur</label>
                 <div class="col-md-12">
-                  <input type="text" placeholder="GAINDE 2000" disabled class="form-control form-control-line">
+                  <input type="text" placeholder="{{organisation.secteur}}" disabled class="form-control form-control-line">
                 </div>
               </div>
 
-              <div class="form-group">
-                <label class="col-md-12">Nom</label>
-                <div class="col-md-12">
-                  <input type="text" placeholder="GAINDE 2000" disabled class="form-control form-control-line">
-                </div>
-              </div>
-
+              <a routerLink="organisation-details" class="btn btn-success ml-5 mr-5">EDITER</a>
+              <a routerLink="organisation-details" class="btn btn-danger">SUPPRIMER</a>
 
             </form>
           </div>
@@ -89,7 +84,69 @@
     <!-- End PAge Content -->
     <!-- ============================================================== -->
 
-    <app-map></app-map>
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-block">
+            <h4 class="card-title">Localisation</h4>
+            <google-map [options]="mapOptions" width="100%">
+              <map-marker *ngFor="let spot of spots"
+                          [position]="{ lat: spot.lat, lng: spot.lng }"
+                          [options]="markerOptions"></map-marker>
+            </google-map>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-5 card-warning p-2 bg-white" >
+      <div class="col-lg-2 mt-3">
+        <div class="form-group">
+          <h5 class="card text-center p-3">Nombre de Lettres Total</h5>
+          <h3 class="text-center"><b>43</b></h3>
+        </div>
+      </div>
+      <div class="col-lg-2 mt-3">
+        <div class="form-group">
+          <h5 class="card text-center p-3">Moyenne Lettres Par Jour</h5>
+          <h3 class="text-center"><b>4</b></h3>
+        </div>
+      </div>
+
+      <div class="col-lg-2 mt-3">
+        <div class="form-group">
+          <h5 class="card text-center p-3">Moyenne Lettres Par Mois</h5>
+          <h3 class="text-center"><b>20</b></h3>
+        </div>
+      </div>
+
+      <div class="col-lg-2 mt-3">
+        <div class="form-group">
+          <h5 class="card text-center p-3">Nombre de Reports Total</h5>
+          <h3 class="text-center"><b>65</b></h3>
+        </div>
+      </div>
+
+      <div class="col-lg-2 mt-3">
+        <div class="form-group">
+          <h5 class="card text-center p-3">Moyenne Reports Par Jour</h5>
+          <h3 class="text-center"><b>6</b></h3>
+        </div>
+      </div>
+
+      <div class="col-lg-2 mt-3">
+        <div class="form-group">
+          <h5 class="card text-center p-3">Nombre de Reports Par Mois</h5>
+          <h3 class="text-center"><b>30</b></h3>
+        </div>
+      </div>
+
+
+    </div>
+
+    <!-- Row -->
+
+
 
   </div>
   <!-- ============================================================== -->

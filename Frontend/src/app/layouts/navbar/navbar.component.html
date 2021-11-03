@@ -4,15 +4,15 @@
     <!-- Sidebar navigation-->
     <nav class="sidebar-nav">
       <ul id="sidebarnav">
-        <li> <a class="waves-effect waves-green active" routerLink="organisations/presentation" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a>
+        <li *ngIf="role=='user'"> <a class="waves-effect waves-green active mt-3" routerLink="organisations/presentation" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a>
         </li>
-        <li> <a class=" mt-5 waves-effect waves-green active" routerLink="organisations/reports" aria-expanded="false"><i class="mdi mdi-scale-balance"></i><span class="hide-menu">Reports</span></a>
+        <li *ngIf="role=='user'"> <a class=" mt-5 waves-effect waves-green active" routerLink="organisations/reports" aria-expanded="false"><i class="mdi mdi-scale-balance"></i><span class="hide-menu">Reports</span></a>
         </li>
-        <li> <a class="mt-5 waves-effect waves-green active" routerLink="organisations/boite-a-lettre" aria-expanded="false"><i class="mdi mdi-message"></i><span class="hide-menu">Boite à lettre</span></a>
+        <li *ngIf="role=='user'"> <a class="mt-5 waves-effect waves-green active" routerLink="organisations/boite-a-lettre" aria-expanded="false"><i class="mdi mdi-message"></i><span class="hide-menu">Boite à lettre</span></a>
         </li>
-        <li> <a class="mt-5 waves-effect waves-green active" href="icon-material.html" aria-expanded="false"><i class="mdi mdi-chart-areaspline"></i><span class="hide-menu">Statistiques</span></a>
+        <li *ngIf="role=='admin'"> <a class="mt-5 waves-effect waves-green active" routerLink="ofnac/statistique" aria-expanded="false"><i class="mdi mdi-chart-areaspline"></i><span class="hide-menu">Statistiques</span></a>
         </li>
-        <li> <a class="mt-5 waves-effect waves-green active" routerLink="ofnac/liste-des-organisations" aria-expanded="false"><i class="mdi mdi-bank"></i><span class="hide-menu">Organisations</span></a>
+        <li *ngIf="role=='admin'"> <a class="mt-5 waves-effect waves-green active" routerLink="ofnac/liste-des-organisations" aria-expanded="false"><i class="mdi mdi-bank"></i><span class="hide-menu">Organisations</span></a>
         </li>
 
       </ul>
@@ -25,6 +25,7 @@
   <div class="sidebar-footer">
     <!-- item--><a href="" class="link" data-toggle="tooltip" title="Settings"><i class="ti-settings"></i></a>
     <!-- item--><a href="" class="link" data-toggle="tooltip" title="Email"><i class="mdi mdi-gmail"></i></a>
-    <!-- item--><a href="" class="link" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a> </div>
+    <!-- item--><a (click)="Logout()" class="link" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a>
+  </div>
   <!-- End Bottom points-->
 </aside>

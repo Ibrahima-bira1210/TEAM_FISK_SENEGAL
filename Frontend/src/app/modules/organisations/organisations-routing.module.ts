@@ -12,9 +12,9 @@ const routes: Routes = [
   { path: '', component: OrganisationsComponent },
   {path: "presentation", component :PresentationComponent},
   {path: "reports", component : ReportsComponent},
-  {path: "reports/details", component : ReportDetailsComponent},
+  {path: "reports/:id", component : ReportDetailsComponent},
   {path : "boite-a-lettre", component:BoiteLettreComponent},
-  {path : "boite-a-lettre/details", component:BoiteLettreDetailsComponent}
+  {path : "boite-a-lettre/:id", component:BoiteLettreDetailsComponent}
 ];
 
 @NgModule({

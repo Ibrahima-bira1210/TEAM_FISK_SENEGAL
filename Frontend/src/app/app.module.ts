@@ -10,20 +10,9 @@ import {MDBBootstrapModule} from "angular-bootstrap-md";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
 import {HttpClientModule} from "@angular/common/http";
+import {AuthModule} from "./modules/auth/auth.module";
+import {AuthService} from "./services/Auth/auth.service";
 
-function initializeKeycloak(keycloak: KeycloakService) {
-  return () =>
-    keycloak.init({
-      config: {
-        url: 'http://localhost:8080/auth',
-        realm: 'BulSetan',
-        clientId: 'BulSetanWeb',
-      },
-      initOptions: {
-        onLoad: 'check-sso',
-      },
-    });
-}
 
 @NgModule({
   declarations: [
@@ -38,20 +27,15 @@ function initializeKeycloak(keycloak: KeycloakService) {
     MDBBootstrapModule.forRoot(),
     BrowserAnimationsModule,
     KeycloakAngularModule,
-    HttpClientModule
+    HttpClientModule,
+    AuthModule
   ],
-  providers: [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializeKeycloak,
-      multi: true,
-      deps: [KeycloakService],
-    },
-  ],
+
   bootstrap: [AppComponent],
   exports: [
     NavbarComponent,
-    HeaderComponent
+    HeaderComponent,
+    AuthModule
   ]
 })
 export class AppModule { }

@@ -1,13 +1,14 @@
+
 import { Component, OnInit } from '@angular/core';
 import {OrganisationService} from "../../../services/organisation/organisation.service";
 import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
-  selector: 'app-organisations-liste',
-  templateUrl: './organisations-liste.component.html',
-  styleUrls: ['./organisations-liste.component.css']
+  selector: 'app-statistique',
+  templateUrl: './statistique.component.html',
+  styleUrls: ['./statistique.component.css']
 })
-export class OrganisationsListeComponent implements OnInit {
+export class StatistiqueComponent implements OnInit {
 
   organisations : any;
   cords : any;
@@ -101,3 +102,4 @@ export class OrganisationsListeComponent implements OnInit {
 
 
 }
+

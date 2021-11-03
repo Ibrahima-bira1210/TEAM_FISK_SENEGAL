@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {ReportService} from "../../../services/report/report.service";
+import {BoiteALettresService} from "../../../services/boite-a-lettres/boite-a-lettres.service";
+import {AuthGuard} from "../../../services/Auth/auth.guard";
+import {AuthService} from "../../../services/Auth/auth.service";
 
 @Component({
   selector: 'app-boite-lettre',
@@ -7,9 +11,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BoiteLettreComponent implements OnInit {
 
-  constructor() { }
+  boites : any;
 
-  ngOnInit(): void {
+  constructor(private boitesService : BoiteALettresService) { }
+
+  ngOnInit() {
+    this.boitesList();
   }
 
+  boitesList() : void{
+    this.boitesService.getAllBoites().subscribe(
+      data =>{
+        this.boites = data.content;
+        console.log(this.boites)
+      },
+      error =>{
+        console.log(error);
+      }
+    )
+  }
 }

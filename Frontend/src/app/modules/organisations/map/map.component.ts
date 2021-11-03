@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-map',
@@ -11,6 +11,11 @@ export class MapComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  @Input()
+  lat : any;
+  @Input()
+  lot : any;
 
   myLatLng = { lat: 14.7645042, lng: -17.3660286 }; // Map Options
   mapOptions: google.maps.MapOptions = {

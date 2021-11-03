@@ -6,18 +6,22 @@ import { OfnacComponent } from './ofnac.component';
 import { OrganisationsListeComponent } from './organisations-liste/organisations-liste.component';
 import { OrganisationDetailsComponent } from './organisation-details/organisation-details.component';
 import {OrganisationsModule} from "../organisations/organisations.module";
+import {GoogleMapsModule} from "@angular/google-maps";
+import { StatistiqueComponent } from './statistique/statistique.component';
 
 
 @NgModule({
   declarations: [
     OfnacComponent,
     OrganisationsListeComponent,
-    OrganisationDetailsComponent
+    OrganisationDetailsComponent,
+    StatistiqueComponent
   ],
     imports: [
         CommonModule,
         OfnacRoutingModule,
-        OrganisationsModule
+        OrganisationsModule,
+        GoogleMapsModule
     ]
 })
 export class OfnacModule { }

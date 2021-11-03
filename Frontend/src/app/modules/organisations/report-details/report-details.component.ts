@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {OrganisationService} from "../../../services/organisation/organisation.service";
+import {ActivatedRoute} from "@angular/router";
+import {ReportService} from "../../../services/report/report.service";
 
 @Component({
   selector: 'app-report-details',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReportDetailsComponent implements OnInit {
 
-  constructor() { }
+  report : any;
 
-  ngOnInit(): void {
+  constructor(private reportService : ReportService, private route : ActivatedRoute) { }
+
+  ngOnInit() {
+    this.getOneReport(this.route.snapshot.paramMap.get('id'));
+  }
+
+  getOneReport(id:any) : void{
+    this.reportService.getOneReport(id).subscribe(
+      data =>{
+        this.report = data;
+        console.log(this.report)
+      },
+      error =>{
+        console.log(error);
+      }
+    )
   }
 
 }
