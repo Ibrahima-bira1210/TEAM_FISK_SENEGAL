@@ -28,6 +28,7 @@ public class Organization {
     private double latitude;
     @Lob
     private byte[] qrCode;
+    private double rate = 100.0;
 
     @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JsonIgnore

@@ -1,5 +1,6 @@
 package com.teamfisk.backend_app.web;
 
+import com.teamfisk.backend_app.entities.Localisation;
 import com.teamfisk.backend_app.entities.Organization;
 import com.teamfisk.backend_app.helpers.ZXingHelper;
 import com.teamfisk.backend_app.repositories.OrgRepository;
@@ -10,8 +11,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("api/org")
 public class OrgController {
@@ -50,6 +54,30 @@ public class OrgController {
     public ResponseEntity<Page<Organization>> getAllOrganizations(Pageable pageable){
         return ResponseEntity.status(HttpStatus.OK).body(orgRepository.findAll(pageable));
     }
+
+    //************************ Get Organization Localisation ****************************************
+    @GetMapping("localization")
+    public ResponseEntity<List<Localisation>> getOrgLocalisation(){
+        List<Organization> organizations  = orgRepository.findAll();
+        List<Localisation> localisations = new ArrayList<>();
+        organizations.forEach( organization -> {
+            Localisation localization = new Localisation();
+            localization.setLat(organization.getLatitude());
+            localization.setLng(organization.getLongitude());
+            if(organization.getRate() < 70 && organization.getRate() > 50){
+                localization.setColor("orange");
+            }else if (organization.getRate() < 50 ) {
+                localization.setColor("rouge");
+            }
+            else{
+                localization.setColor("bleu");
+            }
+            localisations.add(localization);
+
+        });
+        return ResponseEntity.status(HttpStatus.OK).body(localisations);
+    }
+
 
     //************************ Update Organization ****************************************
 
